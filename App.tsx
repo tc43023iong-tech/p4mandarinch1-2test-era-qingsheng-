@@ -195,16 +195,18 @@ const QuizPartCircle: React.FC<{
   const currentQ = questions[qIndex];
   
   // Create tokens and handle correctness memoization
-  const tokens = useMemo(() => {
+  // Fix for line 207: Explicitly type tokens as string[] and provide types for the inner loop to prevent unknown inference.
+  const tokens = useMemo<string[]>(() => {
     const pattern = new RegExp(`(${currentQ.targets.join('|')})`, 'g');
     const initialParts = currentQ.sentence.split(pattern).filter(Boolean);
     
     const finalTokens: string[] = [];
-    initialParts.forEach(part => {
+    initialParts.forEach((part: string) => {
         if (currentQ.targets.includes(part)) {
             finalTokens.push(part);
         } else {
-            finalTokens.push(...Array.from(part));
+            // Use split('') to safely convert character string to string array
+            finalTokens.push(...part.split(''));
         }
     });
     return finalTokens;
