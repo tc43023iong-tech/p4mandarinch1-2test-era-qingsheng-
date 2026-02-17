@@ -1,0 +1,7 @@
+{
+  "name": "p4mandarinch1-2test(era&qingsheng)",
+  "description": "一個專為小四學生設計的互動練習程式，主題為餐廳飲食。內容涵蓋粵普對譯、輕聲判別、兒化音及單韻母 er 判別，透過可愛的介面與音效提升學習動機。",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
