@@ -198,7 +198,6 @@ const QuizPartCircle: React.FC<{
 
   const currentQ = questions[qIndex];
   
-  // 使用新的解析邏輯：將 {字} 解析為目標，其他解析為單字
   const tokens = useMemo<Token[]>(() => {
     const parts = currentQ.sentence.split(/({[^{}]+})/g).filter(Boolean);
     const result: Token[] = [];
@@ -209,7 +208,6 @@ const QuizPartCircle: React.FC<{
             const text = part.substring(1, part.length - 1);
             result.push({ text, isTarget: true, originalIndex: currentIndex++ });
         } else {
-            // 普通文字拆成單個字符
             part.split('').forEach(char => {
                 result.push({ text: char, isTarget: false, originalIndex: currentIndex++ });
             });
@@ -217,6 +215,8 @@ const QuizPartCircle: React.FC<{
     });
     return result;
   }, [currentQ.sentence]);
+
+  const targetCount = useMemo(() => tokens.filter(t => t.isTarget).length, [tokens]);
 
   const isCorrect = useMemo(() => {
     const targetIndices = tokens.filter(t => t.isTarget).map(t => t.originalIndex);
@@ -263,7 +263,12 @@ const QuizPartCircle: React.FC<{
         
         <div className="flex justify-between items-center mb-10 mt-6 text-gray-400 font-black tracking-widest uppercase px-4">
             <span>第 {qIndex + 1} / {questions.length} 份點心</span>
-            <span className="flex items-center gap-2">請圈出答案 <span className="text-orange-400 text-2xl">⭕</span></span>
+            <div className="flex items-center gap-4">
+                <span className="bg-orange-50 text-orange-600 px-4 py-1.5 rounded-2xl text-lg border-2 border-orange-100 flex items-center gap-2 animate-pulse font-black shadow-sm">
+                    <span className="text-xl">💡</span> 共有 {targetCount} 個
+                </span>
+                <span className="flex items-center gap-2">請圈出答案 <span className="text-orange-400 text-2xl">⭕</span></span>
+            </div>
         </div>
 
         <div className="bg-gray-50/80 backdrop-blur-sm px-10 py-16 rounded-[50px] border-4 border-dashed border-gray-200 mb-12 relative overflow-hidden w-full">
@@ -280,7 +285,6 @@ const QuizPartCircle: React.FC<{
                   else if (isSelected && !token.isTarget) style = "border-4 border-red-500 bg-red-50 text-red-800 opacity-70";
                   else style = "opacity-40 grayscale";
               } else if (isSelected) {
-                  // 對標參考圖：橘色邊框、淺橘色背景
                   style = "border-[6px] border-[#F99C4D] bg-[#FFF2E2] text-[#8B4513] scale-110 shadow-xl z-20";
               }
 
@@ -349,7 +353,7 @@ const App: React.FC = () => {
       <header className="bg-white/90 backdrop-blur-xl p-6 shadow-2xl flex items-center justify-between sticky top-0 z-40 border-b-8 border-orange-100 rounded-b-[40px] px-10">
         <div className="flex items-center gap-6">
           <div className="flex flex-col">
-            <h1 className="font-black text-2xl md:text-3xl text-orange-900 leading-tight">四下 第一～二課</h1>
+            <h1 className="font-black text-2xl md:text-3xl text-orange-900 leading-tight">快樂餐廳</h1>
             <p className="text-lg md:text-xl text-orange-600 font-black">兒化音 & 輕聲</p>
           </div>
         </div>
