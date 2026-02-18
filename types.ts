@@ -15,8 +15,7 @@ export interface QuestionPart1 {
 }
 
 export interface QuestionCircle {
-  sentence: string;
-  targets: string[]; // characters or words to be selected
+  sentence: string; // 使用 {字} 來標註目標
 }
 
 export interface GameState {

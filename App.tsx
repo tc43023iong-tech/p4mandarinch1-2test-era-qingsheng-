@@ -139,7 +139,6 @@ const QuizPart1: React.FC<{ onScoreUpdate: (isCorrect: boolean) => void }> = ({ 
         </div>
         
         <div className="flex flex-col md:flex-row gap-12 relative z-10">
-          {/* 左側：廣東話原詞 */}
           <div className="md:w-[40%] flex flex-col items-center justify-center text-center space-y-8">
             <h3 className="text-2xl font-black text-gray-400 uppercase tracking-widest">廣東話點餐</h3>
             <div className="w-full text-5xl md:text-7xl font-black text-orange-600 bg-orange-50 py-16 px-6 rounded-[50px] border-4 border-dashed border-orange-200 shadow-inner min-h-[250px] flex items-center justify-center leading-tight">
@@ -151,7 +150,6 @@ const QuizPart1: React.FC<{ onScoreUpdate: (isCorrect: boolean) => void }> = ({ 
             </div>
           </div>
 
-          {/* 右側：選項 */}
           <div className="md:w-[60%] flex flex-col justify-center space-y-6">
             <div className="md:hidden text-center mb-4">
                <p className="text-xl font-black text-gray-500">對應的普通話詞語是？</p>
@@ -183,51 +181,55 @@ const QuizPart1: React.FC<{ onScoreUpdate: (isCorrect: boolean) => void }> = ({ 
   );
 };
 
+interface Token {
+    text: string;
+    isTarget: boolean;
+    originalIndex: number;
+}
+
 const QuizPartCircle: React.FC<{ 
   questions: QuestionCircle[], 
   type: SectionType,
   onScoreUpdate: (isCorrect: boolean) => void 
 }> = ({ questions, type, onScoreUpdate }) => {
   const [qIndex, setQIndex] = useState(0);
-  const [selectedChars, setSelectedChars] = useState<number[]>([]);
+  const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
   const [revealed, setRevealed] = useState(false);
 
   const currentQ = questions[qIndex];
   
-  // Create tokens and handle correctness memoization
-  // Fix for line 207: Explicitly type tokens as string[] and provide types for the inner loop to prevent unknown inference.
-  const tokens = useMemo<string[]>(() => {
-    const pattern = new RegExp(`(${currentQ.targets.join('|')})`, 'g');
-    const initialParts = currentQ.sentence.split(pattern).filter(Boolean);
-    
-    const finalTokens: string[] = [];
-    initialParts.forEach((part: string) => {
-        if (currentQ.targets.includes(part)) {
-            finalTokens.push(part);
+  // 使用新的解析邏輯：將 {字} 解析為目標，其他解析為單字
+  const tokens = useMemo<Token[]>(() => {
+    const parts = currentQ.sentence.split(/({[^{}]+})/g).filter(Boolean);
+    const result: Token[] = [];
+    let currentIndex = 0;
+
+    parts.forEach(part => {
+        if (part.startsWith('{') && part.endsWith('}')) {
+            const text = part.substring(1, part.length - 1);
+            result.push({ text, isTarget: true, originalIndex: currentIndex++ });
         } else {
-            // Use split('') to safely convert character string to string array
-            finalTokens.push(...part.split(''));
+            // 普通文字拆成單個字符
+            part.split('').forEach(char => {
+                result.push({ text: char, isTarget: false, originalIndex: currentIndex++ });
+            });
         }
     });
-    return finalTokens;
-  }, [currentQ.sentence, currentQ.targets]);
+    return result;
+  }, [currentQ.sentence]);
 
-  // Fix: Move correctness logic to a memoized variable to resolve type inference errors in JSX
   const isCorrect = useMemo(() => {
-    const selectedStrings: string[] = selectedChars
-      .map(idx => tokens[idx])
-      .filter((token): token is string => typeof token === 'string');
-    
-    return currentQ.targets.every((t: string) => selectedStrings.includes(t)) 
-        && selectedStrings.length === currentQ.targets.length;
-  }, [selectedChars, tokens, currentQ.targets]);
+    const targetIndices = tokens.filter(t => t.isTarget).map(t => t.originalIndex);
+    return targetIndices.length === selectedIndices.length && 
+           targetIndices.every(idx => selectedIndices.includes(idx));
+  }, [selectedIndices, tokens]);
 
-  const handleTokenClick = (index: number) => {
+  const handleTokenClick = (idx: number) => {
     if (revealed) return;
-    if (selectedChars.includes(index)) {
-        setSelectedChars(selectedChars.filter(i => i !== index));
+    if (selectedIndices.includes(idx)) {
+        setSelectedIndices(selectedIndices.filter(i => i !== idx));
     } else {
-        setSelectedChars([...selectedChars, index]);
+        setSelectedIndices([...selectedIndices, idx]);
     }
   };
 
@@ -244,7 +246,7 @@ const QuizPartCircle: React.FC<{
     setTimeout(() => {
       if (qIndex < questions.length - 1) {
         setQIndex(prev => prev + 1);
-        setSelectedChars([]);
+        setSelectedIndices([]);
         setRevealed(false);
       }
     }, 2500);
@@ -256,7 +258,7 @@ const QuizPartCircle: React.FC<{
     <div className="p-6 max-w-6xl mx-auto space-y-8 pb-40 relative z-10 animate-fade-in">
       <div className="bg-white p-12 rounded-[60px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] border-8 border-white relative">
         <div className={`absolute -top-8 left-1/2 -translate-x-1/2 ${headerColor} text-white px-12 py-3 rounded-full font-black shadow-2xl ring-8 ring-white whitespace-nowrap text-2xl`}>
-            {type === SectionType.NEUTRAL_TONE ? '☁️ 輕聲字找找看' : type === SectionType.ERHUA ? '👶 兒化練習' : '👂 er 判別'}
+            {type === SectionType.NEUTRAL_TONE ? '☁️ 輕聲字找找看' : type === SectionType.ERHUA ? '🍲 粵普點餐' : '👂 兒化 & er'}
         </div>
         
         <div className="flex justify-between items-center mb-10 mt-6 text-gray-400 font-black tracking-widest uppercase px-4">
@@ -264,30 +266,33 @@ const QuizPartCircle: React.FC<{
             <span className="flex items-center gap-2">請圈出答案 <span className="text-orange-400 text-2xl">⭕</span></span>
         </div>
 
-        <div className="bg-gray-50/80 backdrop-blur-sm px-16 py-12 rounded-[50px] border-4 border-dashed border-gray-200 mb-12 relative overflow-hidden w-full">
+        <div className="bg-gray-50/80 backdrop-blur-sm px-10 py-16 rounded-[50px] border-4 border-dashed border-gray-200 mb-12 relative overflow-hidden w-full">
           <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/50 rounded-full border-4 border-dashed border-gray-100"></div>
           
-          <div className="flex flex-wrap gap-x-12 gap-y-12 justify-center leading-relaxed">
-            {tokens.map((token: string, idx: number) => {
-              const isTarget = currentQ.targets.includes(token);
-              const isSelected = selectedChars.includes(idx);
+          <div className="flex flex-wrap gap-x-6 gap-y-10 justify-center leading-relaxed">
+            {tokens.map((token) => {
+              const isSelected = selectedIndices.includes(token.originalIndex);
               
-              let style = "border-transparent bg-white/40";
+              let style = "bg-white text-gray-800 shadow-sm border-2 border-transparent hover:bg-gray-50";
+              
               if (revealed) {
-                  if (isTarget) style = "border-green-500 bg-green-100 text-green-700 ring-8 ring-green-100 shadow-lg scale-110 z-10";
-                  else if (isSelected && !isTarget) style = "border-red-500 bg-red-100 text-red-700";
-              } else {
-                  if (isSelected) style = "border-orange-400 bg-orange-100 text-orange-800 scale-125 shadow-2xl z-20";
+                  if (token.isTarget) style = "border-4 border-green-500 bg-green-50 text-green-800 ring-8 ring-green-100 shadow-lg scale-110 z-10";
+                  else if (isSelected && !token.isTarget) style = "border-4 border-red-500 bg-red-50 text-red-800 opacity-70";
+                  else style = "opacity-40 grayscale";
+              } else if (isSelected) {
+                  // 對標參考圖：橘色邊框、淺橘色背景
+                  style = "border-[6px] border-[#F99C4D] bg-[#FFF2E2] text-[#8B4513] scale-110 shadow-xl z-20";
               }
 
               return (
-                <span
-                  key={`${idx}-${token}`}
-                  onClick={() => handleTokenClick(idx)}
-                  className={`cursor-pointer px-6 py-4 text-5xl font-black rounded-[35px] border-4 transition-all duration-300 ${style} select-none active:scale-75 min-w-[80px] text-center shadow-sm`}
+                <button
+                  key={token.originalIndex}
+                  onClick={() => handleTokenClick(token.originalIndex)}
+                  disabled={revealed}
+                  className={`min-w-[75px] h-[75px] md:min-w-[90px] md:h-[90px] px-4 py-2 text-4xl md:text-5xl font-black rounded-[28px] transition-all duration-300 flex items-center justify-center select-none active:scale-90 ${style}`}
                 >
-                  {token}
-                </span>
+                  {token.text}
+                </button>
               );
             })}
           </div>
@@ -296,9 +301,9 @@ const QuizPartCircle: React.FC<{
         <div className="flex flex-col items-center gap-8">
             <button
                 onClick={handleCheck}
-                disabled={revealed || selectedChars.length === 0}
+                disabled={revealed || selectedIndices.length === 0}
                 className={`group relative py-6 px-20 rounded-full font-black text-3xl shadow-2xl transition-all ${
-                    revealed || selectedChars.length === 0 
+                    revealed || selectedIndices.length === 0 
                     ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none' 
                     : `${headerColor} text-white hover:scale-110 active:scale-90 hover:shadow-inner`
                 }`}
@@ -310,7 +315,7 @@ const QuizPartCircle: React.FC<{
                 <div className={`text-3xl font-black animate-bounce px-10 py-5 rounded-3xl shadow-sm ${
                     isCorrect ? 'text-green-600 bg-green-50' : 'text-red-600 bg-red-50'
                 }`}>
-                    {isCorrect ? '叮咚！完全正確！✨' : `正確答案是：${currentQ.targets.join('、')}`}
+                    {isCorrect ? '叮咚！完全正確！✨' : `正確答案已標出喔！🔍`}
                 </div>
             )}
         </div>

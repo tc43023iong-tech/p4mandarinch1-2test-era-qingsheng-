@@ -19,26 +19,26 @@ export const PART1_QUESTIONS: QuestionPart1[] = [
 ];
 
 export const PART2_QUESTIONS: QuestionCircle[] = [
-  { sentence: "來吧！我們一起去看看好嗎？", targets: ["吧", "們", "看", "嗎"] },
-  { sentence: "把你的東西拿了就走。", targets: ["的", "了"] },
-  { sentence: "那個男孩子抱著一塊石頭。", targets: ["子", "頭"] },
-  { sentence: "書桌上的筆掉到前邊兒了。", targets: ["的", "了"] },
-  { sentence: "弟弟和媽媽在公園裡逛逛。", targets: ["弟", "媽", "逛"] },
-  { sentence: "熱鬧的故事會上，大家都喜歡穿漂亮的衣服。", targets: ["鬧", "的", "歡", "亮", "服"] },
-  { sentence: "爸爸，那兒很熱鬧，我們去看看。", targets: ["爸", "鬧", "看"] },
-  { sentence: "你喜歡甚麼顏色的氣球？", targets: ["歡", "麼", "的"] },
-  { sentence: "我喜歡紅色，給我扭一把紅色的長劍，好嗎？", targets: ["歡", "的", "嗎"] },
-  { sentence: "謝謝！", targets: ["謝"] },
+  { sentence: "來{吧}！我{們}一起去看{看}好{嗎}？" },
+  { sentence: "把你{的}東{西}拿{了}就走。" },
+  { sentence: "那{個}男孩{子}抱{著}一塊石{頭}。" },
+  { sentence: "筆掉到前邊兒{了}。" },
+  { sentence: "弟{弟}和媽{媽}在公園裡逛{逛}。" },
+  { sentence: "你真漂{亮}！" },
+  { sentence: "爸{爸}，那兒很熱{鬧}，我{們}看{看}。" },
+  { sentence: "你喜{歡}甚{麼}顏色{的}氣球？" },
+  { sentence: "我喜{歡}紅色，給我扭一把紅色{的}長劍，好{嗎}？" },
+  { sentence: "謝{謝}！" },
 ];
 
 export const PART3_QUESTIONS: QuestionCircle[] = [
-  { sentence: "二哥最喜歡喝普洱。", targets: ["二", "洱"] },
-  { sentence: "他的兒子有一雙很大的耳朵。", targets: ["兒", "耳"] },
-  { sentence: "你這一題答得快而準。", targets: ["而"] },
+  { sentence: "這的{春卷}很好吃，要來{一碟}嗎？" },
+  { sentence: "快來{這邊}坐，陪我吃{瓜子}。" },
+  { sentence: "你別一看到{豆腐腦}就{一個勁兒}吃，小心吃壞肚皮。" },
 ];
 
 export const PART4_QUESTIONS: QuestionCircle[] = [
-  { sentence: "這的春卷很好吃，要來一碟嗎？", targets: ["這", "春卷", "一碟"] },
-  { sentence: "快來這邊坐，陪我吃瓜子。", targets: ["這邊", "瓜子"] },
-  { sentence: "你別一看到豆腐腦就一個勁兒吃，小心吃壞肚皮。", targets: ["豆腐腦", "一個勁兒"] },
+  { sentence: "{二}哥最喜歡喝普{洱}。" },
+  { sentence: "他的{兒}子有一雙很大的{耳}朵。" },
+  { sentence: "你這一題答得快{而}準。" },
 ];
