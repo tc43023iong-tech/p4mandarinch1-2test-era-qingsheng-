@@ -22,7 +22,7 @@ export const PART2_QUESTIONS: QuestionCircle[] = [
   { sentence: "來{吧}！我{們}一起去看{看}好{嗎}？" },
   { sentence: "把你{的}東{西}拿{了}就走。" },
   { sentence: "那{個}男孩{子}抱{著}一塊石{頭}。" },
-  { sentence: "筆掉到前邊兒{了}。" },
+  { sentence: "筆掉到前{邊兒了}。" },
   { sentence: "弟{弟}和媽{媽}在公園裡逛{逛}。" },
   { sentence: "你真漂{亮}！" },
   { sentence: "爸{爸}，那兒很熱{鬧}，我{們}看{看}。" },
