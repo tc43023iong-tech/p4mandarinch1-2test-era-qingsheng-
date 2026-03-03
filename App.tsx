@@ -6,13 +6,16 @@ import { audioService } from './services/audioService';
 
 // --- 可愛裝飾元件 ---
 const DecorativeIcons = () => (
-  <div className="fixed inset-0 pointer-events-none overflow-hidden opacity-20 z-0">
+  <div className="fixed inset-0 pointer-events-none overflow-hidden opacity-30 z-0">
     <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Food%20and%20Drink/Pizza.webp" className="absolute top-10 left-10 w-24 h-24 animate-bounce" style={{ animationDelay: '0s' }} alt="裝飾" />
     <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Food%20and%20Drink/Hamburger.webp" className="absolute top-40 right-10 w-24 h-24 animate-pulse" style={{ animationDelay: '1s' }} alt="裝飾" />
     <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Food%20and%20Drink/French%20Fries.webp" className="absolute bottom-40 left-10 w-24 h-24 animate-bounce" style={{ animationDelay: '0.5s' }} alt="裝飾" />
     <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Food%20and%20Drink/Ice%20Cream.webp" className="absolute bottom-10 right-10 w-24 h-24 animate-pulse" style={{ animationDelay: '1.5s' }} alt="裝飾" />
     <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Food%20and%20Drink/Doughnut.webp" className="absolute top-1/2 left-5 w-20 h-20 animate-bounce" style={{ animationDelay: '2s' }} alt="裝飾" />
     <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Food%20and%20Drink/Sushi.webp" className="absolute top-1/4 right-5 w-20 h-20 animate-pulse" style={{ animationDelay: '0.2s' }} alt="裝飾" />
+    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Animals%20and%20Nature/Butterfly.webp" className="absolute top-20 left-1/2 w-16 h-16 animate-pulse" style={{ animationDelay: '0.7s' }} alt="裝飾" />
+    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Animals%20and%20Nature/Sun.webp" className="absolute top-5 right-1/4 w-32 h-32 animate-spin-slow" alt="裝飾" />
+    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Objects/Balloon.webp" className="absolute bottom-20 left-1/4 w-20 h-20 animate-bounce" style={{ animationDelay: '1.2s' }} alt="裝飾" />
   </div>
 );
 
@@ -27,15 +30,15 @@ const CoverPage: React.FC<{ onStart: () => void }> = ({ onStart }) => (
         alt="蛋糕" 
         className="w-64 h-64 relative transform hover:scale-110 transition-transform cursor-pointer" 
       />
-      <div className="absolute -top-6 -right-6 bg-red-500 text-white w-24 h-24 flex items-center justify-center rounded-full shadow-2xl transform rotate-12 font-black text-3xl border-4 border-white ring-4 ring-red-100">
+      <div className="absolute -top-6 -right-6 bg-red-500 text-white w-24 h-24 flex items-center justify-center rounded-full shadow-2xl transform rotate-12 font-black text-3xl border-4 border-white ring-4 ring-red-100 font-hand">
         四下
       </div>
     </div>
     
     <div className="space-y-6 w-full max-w-5xl">
-      <div className="inline-block w-full px-12 py-10 bg-white rounded-[60px] shadow-2xl border-8 border-orange-100 relative">
-        <div className="absolute -top-4 -left-4 text-4xl">🥟</div>
-        <div className="absolute -bottom-4 -right-4 text-4xl">🍜</div>
+      <div className="inline-block w-full px-12 py-10 bg-white/90 backdrop-blur-sm crayon-border shadow-xl relative">
+        <div className="absolute -top-8 -left-8 text-6xl animate-bounce">🥟</div>
+        <div className="absolute -bottom-8 -right-8 text-6xl animate-bounce" style={{ animationDelay: '0.5s' }}>🍜</div>
         
         <div className="space-y-4">
           <h1 className="text-3xl md:text-5xl font-black text-orange-900 font-zcool tracking-wider leading-tight">
@@ -47,14 +50,14 @@ const CoverPage: React.FC<{ onStart: () => void }> = ({ onStart }) => (
         </div>
         
         <div className="flex items-center justify-center gap-4 mt-8">
-          <div className="h-1.5 flex-1 bg-pink-100 rounded-full"></div>
-          <p className="text-2xl md:text-4xl text-pink-500 font-black drop-shadow-sm px-4">互動練習小任務</p>
-          <div className="h-1.5 flex-1 bg-pink-100 rounded-full"></div>
+          <div className="h-2 flex-1 bg-pink-200 rounded-full"></div>
+          <p className="text-2xl md:text-4xl text-pink-500 font-black drop-shadow-sm px-4 font-hand">互動練習小任務</p>
+          <div className="h-2 flex-1 bg-pink-200 rounded-full"></div>
         </div>
       </div>
       
       <div className="flex flex-wrap justify-center gap-4 mt-8">
-        <p className="text-xl md:text-2xl text-orange-700 font-bold bg-white/75 px-12 py-4 rounded-full inline-block backdrop-blur-sm border-2 border-orange-200 shadow-sm">
+        <p className="text-xl md:text-2xl text-orange-700 font-bold bg-yellow-100/80 px-12 py-4 rounded-full inline-block backdrop-blur-sm border-4 border-dashed border-orange-300 shadow-sm font-hand">
           🍱 歡迎來到普通話快樂餐廳！ 🍱
         </p>
       </div>
@@ -62,7 +65,7 @@ const CoverPage: React.FC<{ onStart: () => void }> = ({ onStart }) => (
 
     <button 
       onClick={onStart}
-      className="group relative bg-orange-500 hover:bg-orange-600 text-white text-4xl font-black py-8 px-28 rounded-full shadow-[0_15px_0_rgb(194,65,12)] transform transition hover:-translate-y-2 active:translate-y-2 active:shadow-none flex items-center gap-6"
+      className="group relative bg-orange-500 hover:bg-orange-600 text-white text-4xl font-black py-8 px-28 rounded-full shadow-[0_15px_0_rgb(194,65,12)] transform transition hover:-translate-y-2 active:translate-y-2 active:shadow-none flex items-center gap-6 font-hand"
     >
       <span>進入餐廳闖關</span>
       <span className="group-hover:translate-x-4 transition-transform text-5xl">🍴</span>
@@ -129,34 +132,34 @@ const QuizPart1: React.FC<{ onScoreUpdate: (isCorrect: boolean) => void }> = ({ 
 
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-8 pb-40 relative z-10 animate-fade-in">
-      <div className="bg-white p-12 rounded-[60px] shadow-2xl border-8 border-orange-100 relative overflow-hidden">
-        <div className="absolute -top-10 -left-10 w-40 h-40 bg-orange-50 rounded-full opacity-50 blur-xl"></div>
+      <div className="bg-white/90 backdrop-blur-sm p-12 crayon-border shadow-2xl relative overflow-hidden">
+        <div className="absolute -top-10 -left-10 w-40 h-40 bg-orange-100/50 rounded-full opacity-50 blur-xl"></div>
         <div className="flex justify-between items-center mb-8 relative z-10">
-          <span className="bg-orange-100 text-orange-700 px-6 py-2 rounded-full font-black text-sm border-2 border-orange-200">
+          <span className="bg-orange-200 text-orange-800 px-6 py-2 rounded-full font-black text-lg border-4 border-dashed border-orange-300 font-hand">
             點餐任務 {qIndex + 1} / {PART1_QUESTIONS.length}
           </span>
-          <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Food%20and%20Drink/Cookie.webp" className="w-14 h-14" alt="餅乾" />
+          <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Food%20and%20Drink/Cookie.webp" className="w-16 h-16" alt="餅乾" />
         </div>
         
         <div className="flex flex-col md:flex-row gap-12 relative z-10">
           <div className="md:w-[40%] flex flex-col items-center justify-center text-center space-y-8">
-            <h3 className="text-2xl font-black text-gray-400 uppercase tracking-widest">廣東話點餐</h3>
-            <div className="w-full text-5xl md:text-7xl font-black text-orange-600 bg-orange-50 py-16 px-6 rounded-[50px] border-4 border-dashed border-orange-200 shadow-inner min-h-[250px] flex items-center justify-center leading-tight">
+            <h3 className="text-3xl font-black text-gray-500 uppercase tracking-widest font-hand">廣東話點餐</h3>
+            <div className="w-full text-5xl md:text-7xl font-black text-orange-600 bg-yellow-50/80 py-16 px-6 crayon-border border-orange-200 shadow-inner min-h-[250px] flex items-center justify-center leading-tight">
               {currentQ.cantonese}
             </div>
             <div className="hidden md:flex flex-col items-center animate-bounce">
-               <span className="text-orange-300 text-4xl">➡️</span>
-               <p className="text-xl font-black text-gray-400 mt-2">對應的是？</p>
+               <span className="text-orange-400 text-5xl">➡️</span>
+               <p className="text-2xl font-black text-gray-400 mt-2 font-hand">對應的是？</p>
             </div>
           </div>
 
           <div className="md:w-[60%] flex flex-col justify-center space-y-6">
             <div className="md:hidden text-center mb-4">
-               <p className="text-xl font-black text-gray-500">對應的普通話詞語是？</p>
+               <p className="text-2xl font-black text-gray-500 font-hand">對應的普通話詞語是？</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {currentQ.options.map((opt) => {
-                let style = "bg-white border-gray-100 text-gray-700 hover:border-orange-400 hover:bg-orange-50 shadow-md";
+                let style = "bg-white border-gray-200 text-gray-700 hover:border-orange-400 hover:bg-orange-50 shadow-md";
                 if (isAnswered) {
                   if (opt === currentQ.correctAnswer) style = "bg-green-100 border-green-500 text-green-700 ring-8 ring-green-100 scale-105 z-20";
                   else if (opt === selected) style = "bg-red-100 border-red-500 text-red-700 opacity-70";
@@ -167,7 +170,7 @@ const QuizPart1: React.FC<{ onScoreUpdate: (isCorrect: boolean) => void }> = ({ 
                     key={opt}
                     disabled={isAnswered}
                     onClick={() => handleSelect(opt)}
-                    className={`py-8 px-8 rounded-[35px] border-b-8 font-black text-2xl md:text-3xl transition-all transform active:scale-95 flex items-center justify-center text-center min-h-[120px] ${style}`}
+                    className={`py-8 px-8 rounded-[35px] border-b-8 font-black text-2xl md:text-3xl transition-all transform active:scale-95 flex items-center justify-center text-center min-h-[120px] font-hand ${style}`}
                   >
                     {opt}
                   </button>
@@ -253,39 +256,40 @@ const QuizPartCircle: React.FC<{
   };
 
   const headerColor = type === SectionType.NEUTRAL_TONE ? 'bg-blue-500' : type === SectionType.ERHUA ? 'bg-pink-500' : 'bg-green-500';
+  const borderColorClass = type === SectionType.NEUTRAL_TONE ? 'crayon-border-blue' : type === SectionType.ERHUA ? 'crayon-border-pink' : 'crayon-border-green';
 
   return (
     <div className="p-6 max-w-6xl mx-auto space-y-8 pb-40 relative z-10 animate-fade-in">
-      <div className="bg-white p-12 rounded-[60px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] border-8 border-white relative">
-        <div className={`absolute -top-8 left-1/2 -translate-x-1/2 ${headerColor} text-white px-12 py-3 rounded-full font-black shadow-2xl ring-8 ring-white whitespace-nowrap text-2xl`}>
-            {type === SectionType.NEUTRAL_TONE ? '☁️ 輕聲字找找看' : type === SectionType.ERHUA ? '🍲 粵普點餐' : '👂 兒化 & er'}
+      <div className={`bg-white/90 backdrop-blur-sm p-12 ${borderColorClass} shadow-2xl relative`}>
+        <div className={`absolute -top-10 left-1/2 -translate-x-1/2 ${headerColor} text-white px-12 py-4 rounded-full font-black shadow-2xl ring-8 ring-white whitespace-nowrap text-3xl font-hand`}>
+            {type === SectionType.NEUTRAL_TONE ? '☁️ 輕聲字找找看' : type === SectionType.ERHUA ? '🍲 兒化 & er' : '👂 兒化 & er'}
         </div>
         
-        <div className="flex justify-between items-center mb-10 mt-6 text-gray-400 font-black tracking-widest uppercase px-4">
-            <span>第 {qIndex + 1} / {questions.length} 份點心</span>
-            <div className="flex items-center gap-4">
-                <span className="bg-orange-50 text-orange-600 px-4 py-1.5 rounded-2xl text-lg border-2 border-orange-100 flex items-center gap-2 animate-pulse font-black shadow-sm">
-                    <span className="text-xl">💡</span> 共有 {targetCount} 個
+        <div className="flex justify-between items-center mb-10 mt-8 text-gray-500 font-black tracking-widest uppercase px-4 font-hand">
+            <span className="text-xl">第 {qIndex + 1} / {questions.length} 份點心</span>
+            <div className="flex items-center gap-6">
+                <span className="bg-yellow-50 text-orange-600 px-6 py-2 rounded-2xl text-xl border-4 border-dashed border-orange-200 flex items-center gap-2 animate-pulse font-black shadow-sm">
+                    <span className="text-2xl">💡</span> 共有 {targetCount} 個
                 </span>
-                <span className="flex items-center gap-2">請圈出答案 <span className="text-orange-400 text-2xl">⭕</span></span>
+                <span className="flex items-center gap-2 text-xl">請圈出答案 <span className="text-orange-400 text-3xl">⭕</span></span>
             </div>
         </div>
 
-        <div className="bg-gray-50/80 backdrop-blur-sm px-10 py-16 rounded-[50px] border-4 border-dashed border-gray-200 mb-12 relative overflow-hidden w-full">
-          <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/50 rounded-full border-4 border-dashed border-gray-100"></div>
+        <div className="bg-white/50 backdrop-blur-sm px-10 py-16 rounded-[50px] border-4 border-dashed border-gray-300 mb-12 relative overflow-hidden w-full">
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/50 rounded-full border-4 border-dashed border-gray-200"></div>
           
-          <div className="flex flex-wrap gap-x-6 gap-y-10 justify-center leading-relaxed">
+          <div className="flex flex-wrap gap-x-8 gap-y-12 justify-center leading-relaxed">
             {tokens.map((token) => {
               const isSelected = selectedIndices.includes(token.originalIndex);
               
-              let style = "bg-white text-gray-800 shadow-sm border-2 border-transparent hover:bg-gray-50";
+              let style = "bg-white text-gray-800 shadow-sm border-4 border-transparent hover:bg-gray-50";
               
               if (revealed) {
-                  if (token.isTarget) style = "border-4 border-green-500 bg-green-50 text-green-800 ring-8 ring-green-100 shadow-lg scale-110 z-10";
-                  else if (isSelected && !token.isTarget) style = "border-4 border-red-500 bg-red-50 text-red-800 opacity-70";
+                  if (token.isTarget) style = "border-[6px] border-green-500 bg-green-50 text-green-800 ring-8 ring-green-100 shadow-lg scale-110 z-10";
+                  else if (isSelected && !token.isTarget) style = "border-[6px] border-red-500 bg-red-50 text-red-800 opacity-70";
                   else style = "opacity-40 grayscale";
               } else if (isSelected) {
-                  style = "border-[6px] border-[#F99C4D] bg-[#FFF2E2] text-[#8B4513] scale-110 shadow-xl z-20";
+                  style = "border-[8px] border-[#F99C4D] bg-[#FFF2E2] text-[#8B4513] scale-110 shadow-xl z-20";
               }
 
               return (
@@ -293,7 +297,7 @@ const QuizPartCircle: React.FC<{
                   key={token.originalIndex}
                   onClick={() => handleTokenClick(token.originalIndex)}
                   disabled={revealed}
-                  className={`min-w-[75px] h-[75px] md:min-w-[90px] md:h-[90px] px-4 py-2 text-4xl md:text-5xl font-black rounded-[28px] transition-all duration-300 flex items-center justify-center select-none active:scale-90 ${style}`}
+                  className={`min-w-[85px] h-[85px] md:min-w-[100px] md:h-[100px] px-4 py-2 text-4xl md:text-6xl font-black rounded-[35px] transition-all duration-300 flex items-center justify-center select-none active:scale-90 font-hand ${style}`}
                 >
                   {token.text}
                 </button>
@@ -350,28 +354,28 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-[#FFF9E5] text-gray-800 font-sans relative">
       <DecorativeIcons />
       
-      <header className="bg-white/90 backdrop-blur-xl p-6 shadow-2xl flex items-center justify-between sticky top-0 z-40 border-b-8 border-orange-100 rounded-b-[40px] px-10">
+      <header className="bg-white/95 backdrop-blur-xl p-6 shadow-2xl flex items-center justify-between sticky top-0 z-40 border-b-8 border-orange-200 rounded-b-[50px] px-10">
         <div className="flex items-center gap-6">
           <div className="flex flex-col">
-            <h1 className="font-black text-2xl md:text-3xl text-orange-900 leading-tight">快樂餐廳</h1>
-            <p className="text-lg md:text-xl text-orange-600 font-black">兒化音 & 輕聲</p>
+            <h1 className="font-black text-3xl md:text-4xl text-orange-900 leading-tight font-hand">快樂餐廳</h1>
+            <p className="text-xl md:text-2xl text-orange-600 font-black font-hand">兒化音 & 輕聲</p>
           </div>
         </div>
         
         {gameState !== SectionType.HOME && (
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-8">
                 <div className="flex flex-col items-end">
-                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-tighter">Total Stars</span>
+                    <span className="text-xs font-black text-gray-400 uppercase tracking-widest font-hand">Total Stars</span>
                     <div className="flex items-center gap-2">
-                        <span className="text-3xl font-black text-orange-600 tabular-nums">{totalCorrect}</span>
-                        <span className="text-2xl animate-pulse">⭐</span>
+                        <span className="text-4xl font-black text-orange-600 tabular-nums font-hand">{totalCorrect}</span>
+                        <span className="text-3xl animate-pulse">⭐</span>
                     </div>
                 </div>
                 <button 
                   onClick={() => setGameState(SectionType.HOME)}
-                  className="bg-gray-100 hover:bg-orange-100 text-gray-400 hover:text-orange-500 transition-all p-4 rounded-[25px] border-b-8 border-gray-200 active:border-b-0 active:translate-y-2 shadow-sm"
+                  className="bg-yellow-50 hover:bg-orange-100 text-orange-400 hover:text-orange-600 transition-all p-5 rounded-[30px] border-b-8 border-orange-200 active:border-b-0 active:translate-y-2 shadow-md"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                 </button>
             </div>
         )}
@@ -418,6 +422,13 @@ const App: React.FC = () => {
         }
         .animate-fade-in {
           animation: fade-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
         }
       `}</style>
     </div>
